@@ -138,18 +138,36 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Container playerDetailsView() {
+  Widget playerDetailsView() {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-          color: ColorResource.color76878F,
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(10),
-            topRight: Radius.circular(10),
-          )),
+        color: ColorResource.color76878F,
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(10),
+          topRight: Radius.circular(10),
+        ),
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          GestureDetector(
+            onVerticalDragEnd: (details) {
+              player?.pause();
+              isPlaying = false;
+              selectedIndex = -1;
+              setState(() {});
+            },
+            child: Container(
+              width: 50,
+              height: 6,
+              decoration: BoxDecoration(
+                color: ColorResource.color76878F,
+                borderRadius: const BorderRadius.all(Radius.circular(5)),
+              ),
+              margin: const EdgeInsets.only(top: 10),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: Row(
